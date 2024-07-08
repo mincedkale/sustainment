@@ -1,0 +1,31 @@
+.infoContainer {
+    display: flex;
+}
+
+.generalDataContainer {
+    min-width: 45%;
+    min-height: 100%;
+    background-color: rgb(223, 223, 133);
+    margin: 2rem;
+    margin-right: 1rem;
+    border-radius: 10px;
+}
+
+.esgDataContainer {
+    min-width: 45%;
+    min-height: 100%;
+    background-color: rgb(148, 223, 133);
+    margin: 2rem;
+    margin-left: 1rem;
+    border-radius: 10px;
+}
+
+.generalData {
+    margin: 2rem;
+
+    height: 100%;
+}
+
+.esgData {
+    margin: 2rem;
+}
