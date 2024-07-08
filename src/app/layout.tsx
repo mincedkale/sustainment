@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { getSession } from '@auth0/nextjs-auth0';
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,18 @@ export default async function RootLayout({
   if (!session) {
     return (
     <html lang="en">
+    <head>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KK61XDSJBP"></Script>
+      <Script id="google-analytics">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KK61XDSJBP');
+        `}
+      </Script>
+    </head>  
     <UserProvider>
       <body className={inter.className}>
         <nav className="navigationBar">
@@ -35,19 +48,31 @@ export default async function RootLayout({
     );
   } else {
     return (
-      <html lang="en">
-      <UserProvider>
-        <body className={inter.className}>
-          <nav className="navigationBar">
-            <a href="/">Sustainment</a>
-            <a href="/discover">Discover</a>
-            <a href="/profile">Profile</a>
-            <a href="/api/auth/logout">Logout</a>
-          </nav>
-          {children}
-        </body>
-      </UserProvider>
-      </html>
-      );
+    <html lang="en">
+    <head>
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-KK61XDSJBP"></Script>
+      <Script id="google-analytics">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KK61XDSJBP');
+        `}
+      </Script>
+    </head>  
+    <UserProvider>
+      <body className={inter.className}>
+        <nav className="navigationBar">
+          <a href="/">Sustainment</a>
+          <a href="/discover">Discover</a>
+          <a href="/profile">Profile</a>
+          <a href="/api/auth/logout">Logout</a>
+        </nav>
+        {children}
+      </body>
+    </UserProvider>
+    </html>
+    );
   }
 }
