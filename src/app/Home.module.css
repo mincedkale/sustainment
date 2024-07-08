@@ -1,0 +1,59 @@
+.background {
+  z-index: 0;
+  margin-top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #dcffdd, #2b6b48);
+  min-height: calc(200vh - 0px); /* Subtract the height of the nav bar */
+}
+
+.textContainer {
+  position: relative;
+  margin-top: 0rem;
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem;
+  z-index: 1;
+}
+
+
+.ellipse {
+  overflow-x: hidden;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 2400px; /* Adjust width for your design */
+  height: 900px; /* Adjust height for your design */
+  background-color: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; /* Ensures it's behind the content */
+}
+
+.landingText {
+  margin-top: 10rem;
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem;
+}
+  
+.rainbowText {
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s ease-in-out infinite;
+}
+  
+@keyframes rainbow {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}

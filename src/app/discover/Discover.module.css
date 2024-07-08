@@ -1,0 +1,111 @@
+.background {
+    min-height: 100vh;
+    margin-top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.searchContainer {
+    position: relative;
+    margin-top: 0rem;
+    text-align: center;
+    font-size: 2rem;
+    z-index: 1;
+
+}
+
+.searchBarAndButton {
+    position: relative;
+    display: inline-block;
+
+}
+
+.searchBar {
+    width: 500px;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border: 1px solid rgb(3, 99, 59);
+    border-radius: 5px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.searchBar::placeholder {
+    color: rgb(3, 99, 59);
+    opacity: .5;
+}
+
+.searchBar focus::placeholder {
+    color: transparent;
+  }
+
+.searchButton {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border: 1px solid rgb(3, 99, 59);
+    cursor: pointer;
+    background-color: rgb(81, 174, 106);
+    border-radius: 5px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.animatedGreen {
+    background: linear-gradient(90deg,rgb(154, 206, 129), green, rgb(75, 135, 224), rgb(154, 206, 129), green, rgb(75, 135, 224));
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: liquid_green 5s ease-in-out infinite;
+}
+
+@keyframes liquid_green {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+  }
+
+.searchList {
+    margin-left: 25rem;
+    margin-right: 25rem;
+    margin-top: 3rem;
+    padding: 0px;
+}
+
+
+
+.searchResultItemContainer {
+    border: 1px solid #ccc; /* Adds a border around each block */
+    margin-bottom: 10px; /* Adds space between blocks */
+    background-color: #ffffff; /* Sets a background color */
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-top: 3rem;
+    font-size: medium;
+    text-align: left;
+}
+
+
+.searchResultItem{
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+}
+
+
+.searchResultItem h3 {
+    font-size: 1.5rem; /* Larger text for the title */
+    
+}
+
+.resultItem .title {
+    font-size: 1px; /* Larger text for the title */
+}
