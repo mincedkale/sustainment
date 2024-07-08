@@ -9,7 +9,7 @@ const jsxifyLineBreaks = (text: string) => {
     return text && text.split(/\r?\\n/).map((line, index) => {
         if(line.includes('Customers: ')) {
             console.log("YES")
-            return <div><p key={index}>{line.split('Customers: ')[0]}</p><p>Customers: {line.split('Customers: ')[1]}</p></div>
+            return <div key={index}><p >{line.split('Customers: ')[0]}</p><p>Customers: {line.split('Customers: ')[1]}</p></div>
         }
         return <p key={index}>{line}</p>
     });
