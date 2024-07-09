@@ -25,6 +25,14 @@ export default function Company() {
     const [esgData, setEsgData] = React.useState<CompanyEsgData | null>(null);
     const [stockData, setStockData] = React.useState<CompanyStockData | null>(null);
 
+    const handleTradeClick = (tradeType: string) => {
+        if (genericData) {
+            window.location.href = `/trade?id=${genericData.id}&type=${tradeType}`;
+        } else {
+            console.error('No company data to trade');
+        }
+    }
+
     useEffect(() => {
         const getCompanyData = () => {
             fetch(`/api/company-all-data?id=${id}`).then((response) => {
@@ -59,6 +67,14 @@ export default function Company() {
                                         <br/>Market cap: {stockData.market_cap}
                                         <br/>Volume traded today: {stockData.volume}
                                     </div>
+                                    <br/>
+                                    <div>
+                                        <button className={styles.bullSellButtons} onClick={() => handleTradeClick('buy')}> Buy </button>
+                                        <button className={styles.bullSellButtons} onClick={() => handleTradeClick('sell')}> Sell </button>
+                                    </div>
+                                    
+                                    <br/>
+                                    <img className={styles.graph} src='https://www.amcharts.com/wp-content/uploads/2019/10/demo_14592_none-11-1024x690.png' ></img>
                                 </div>
                             </div>
                             <div className={styles.esgDataContainer}>

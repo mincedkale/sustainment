@@ -20,6 +20,15 @@
     border-radius: 10px;
 }
 
+.graph {
+    max-width: 100%;
+}
+
+.bullSellButtons {
+    margin-right: 1rem;
+    width: 5rem;
+}
+
 .generalData {
     margin: 2rem;
 
