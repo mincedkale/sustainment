@@ -4,14 +4,61 @@ import React, { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { CompanyGenericData, CompanyControversyData, CompanyEmissionsData, CompanyEsgData, CompanyStockData, CompanyDataAll } from '../types/companyData/types';
 import styles from './Company.module.css';
- 
+
 const jsxifyLineBreaks = (text: string) => {
     return text && text.split(/\r?\\n/).map((line, index) => {
         if(line.includes('Customers: ')) {
-            console.log("YES")
-            return <div key={index}><p>{line.split('Customers: ')[0]}</p><p>Customers: {line.split('Customers: ')[1]}</p></div>
+            return <div key={index}><p>{line.split('Customers: ')[0]}</p>
+            <p >Customers: {line.split('Customers: ')[1]}</p></div>
         }
         return <p key={index}>{line}</p>
+    });
+}
+ 
+const jsxifyLineBreaksControversy = (text: string) => {
+    return text && text.split(/\r?\\n/).map((line, index) => {
+        let colour = 'black';
+        line.includes('Green') && (colour = 'green');
+        line.includes('Yellow') && (colour = 'yellow');
+        line.includes('Orange') && (colour = 'orange');
+        line.includes('Red') && (colour = 'red');
+        let fontWeight = 'bold';
+        colour === 'black' && (fontWeight = 'normal');
+        if(line.includes('Customers: ')) {
+            let color1 = 'black';
+            let color2= 'black';
+            line.split('Customers: ')[0].includes('Green') && (color1 = 'green');
+            line.split('Customers: ')[0].includes('Yellow') && (color1 = 'yellow');
+            line.split('Customers: ')[0].includes('Orange') && (color1 = 'orange');
+            line.split('Customers: ')[0].includes('Red') && (color1 = 'red');
+            line.split('Customers: ')[1].includes('Green') && (color2 = 'green');
+            line.split('Customers: ')[1].includes('Yellow') && (color2 = 'yellow');
+            line.split('Customers: ')[1].includes('Orange') && (color2 = 'orange');
+            line.split('Customers: ')[1].includes('Red') && (color2 = 'red');
+            return <div key={index} style={{ color: color1, fontWeight: 'bold'  }}><p>{line.split('Customers: ')[0]}</p>
+            <p style={{ color: color2, fontWeight: 'bold'  }} >Customers: {line.split('Customers: ')[1]}</p></div>
+        }
+        return <p key={index} style={{ color: colour, fontWeight: 'bold' }}>{line}</p>
+    });
+}
+
+const jsxifyLineBreaksEmissions = (text: string) => {
+    return text && text.split(/\r?\\n/).map((line, index) => {
+        let colour = 'black';
+        line.endsWith('YES') && (colour = 'green');
+        line.endsWith('NO') && (colour = 'red');
+        line.endsWith('MISALIGNED') && (colour = 'red');
+        return <p key={index} style={{ color: colour, fontWeight: 'bold' }}>{line}</p>
+    });
+}
+
+const jsxifyLineBreaksESG = (text: string) => {
+    return text && text.split(/\r?\\n/).map((line, index) => {
+        let colour = 'black';
+        line.startsWith('Leader') && (colour = 'green');
+        line.startsWith('Average') && (colour = 'yellow');
+        line.startsWith('Very poor') && (colour = 'red');
+        return <p key={index} style={{ color: colour, fontWeight: 'bold' }}>{line}</p>
     });
 }
 
@@ -80,23 +127,23 @@ export default function Company() {
                             <div className={styles.esgDataContainer}>
                                 <div className={styles.esgData}>
                                     <h1>ESG Profile</h1>
+                                    <h2>{jsxifyLineBreaksEmissions(`Current ESG Grade: ${esgData.esg_curr.toUpperCase()}`)}</h2>
                                     <div>
                                         <h2>Controversy Data</h2>
-                                        <p>{jsxifyLineBreaks(controversyData.environment)}</p>
-                                        <p>{jsxifyLineBreaks(controversyData.governance)}</p>
-                                        <p>{jsxifyLineBreaks(controversyData.social)}</p>
+                                        <p>{jsxifyLineBreaksControversy(controversyData.environment)}</p>
+                                        <p>{jsxifyLineBreaksControversy(controversyData.governance)}</p>
+                                        <p>{jsxifyLineBreaksControversy(controversyData.social)}</p>
                                     </div>
                                     <div>
                                         <h2>Emissions Data</h2>
-                                        <p>{jsxifyLineBreaks(emissionsData.questions)}</p>
-                                        <p>{jsxifyLineBreaks(emissionsData.alignment)}</p>
+                                        <p>{jsxifyLineBreaksEmissions(emissionsData.questions)}</p>
+                                        <p>{jsxifyLineBreaksEmissions(emissionsData.alignment)}</p>
                                     </div>
                                     <div>
                                         <h2>ESG Data</h2>
-                                        <p>{jsxifyLineBreaks(esgData.leader)}</p>
-                                        <p>{jsxifyLineBreaks(esgData.average)}</p>
-                                        <p>{jsxifyLineBreaks(esgData.esg_curr)}</p>
-                                        <p>{jsxifyLineBreaks(esgData.laggard)}</p>
+                                        <p>{jsxifyLineBreaksESG(`Leader in: ${esgData.leader}`)}</p>
+                                        <p>{jsxifyLineBreaksESG(`Average in: ${esgData.average}`)}</p>
+                                        <p>{jsxifyLineBreaksESG(`Very poor in: ${esgData.laggard}`)}</p>
                                     </div>
                                 </div>
                             </div>
