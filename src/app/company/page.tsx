@@ -33,7 +33,7 @@ const jsxifyLineBreaksControversy = (text: string) => {
             line.split('Customers: ')[0].includes('Red') && (color1 = 'red');
             line.split('Customers: ')[1].includes('Green') && (color2 = 'green');
             line.split('Customers: ')[1].includes('Yellow') && (color2 = 'yellow');
-            line.split('Customers: ')[1].includes('Orange') && (color2 = 'orange');
+            line.split('Customers: ')[1     ].includes('Orange') && (color2 = 'orange');
             line.split('Customers: ')[1].includes('Red') && (color2 = 'red');
             return <div key={index} style={{ color: color1, fontWeight: 'bold'  }}><p>{line.split('Customers: ')[0]}</p>
             <p style={{ color: color2, fontWeight: 'bold'  }} >Customers: {line.split('Customers: ')[1]}</p></div>

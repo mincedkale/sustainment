@@ -36,7 +36,7 @@ export default function Discover() {
     if (!searchQuery) return;
     setLoaded(false);
     const getCompanySearchResults = () => {
-      fetchCompanySearchResults(searchQuery).then((results) => {
+      fetchCompanySearchResults('energy').then((results) => {
         console.log(results);
         setSearchResults(results);
         setLoaded(true);
@@ -48,7 +48,7 @@ export default function Discover() {
   }
 
   useEffect(() => {
-    fetchCompanySearchResults('energy').then((results) => {
+    fetchCompanySearchResults('group').then((results) => {
       console.log(results);
       setRecommended(results);
       setLoaded(true);
@@ -70,7 +70,7 @@ export default function Discover() {
           </form>          
         </div>
         {
-          (loaded && searchResults.length > 0) &&
+          (loaded && searchResults.length > 0) && // If user has searched
           (<div className={styles.searchResults}>
               {
                 searchResults.slice(0, resultsNumber).map((company: CompanyGenericData) => {
@@ -91,7 +91,7 @@ export default function Discover() {
           </div>)
         }
         {
-          (loaded && recommended.length > 0) &&
+          (loaded && recommended.length > 0) && // if user has not searched yet -> recommended companies
           (<div className={styles.searchResults}>
             <p>Recommended</p>
               {
@@ -113,7 +113,7 @@ export default function Discover() {
           </div>)
         }
         {
-          !loaded && <div> Loading... </div>
+          !loaded && <div> Loading... </div> // loading
         }
       </div>
     </div>
